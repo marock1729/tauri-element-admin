@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useUser } from "@/stores/user";
+import { useUserStore } from "@/stores/user";
 import { useRouter } from "vue-router";
 
-const user = useUser();
+const user = useUserStore();
 const router = useRouter();
 
 const handleLogoutButtonClick = async () => {

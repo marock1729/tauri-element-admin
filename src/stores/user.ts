@@ -17,7 +17,7 @@ interface UserInfo {
   email: string
 }
 
-export const useUser = defineStore({
+export const useUserStore = defineStore({
   id: "user",
   state: (): UserInfo => ({
     id: "",

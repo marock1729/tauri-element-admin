@@ -2,11 +2,11 @@
 import { reactive, ref } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
 import { ElMessage } from "element-plus";
-import { useUser } from "@/stores/user";
+import { useUserStore } from "@/stores/user";
 import { User, Lock } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
 
-const user = useUser();
+const user = useUserStore();
 const router = useRouter();
 
 interface LoginForm {
