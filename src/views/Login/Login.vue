@@ -6,7 +6,7 @@ import { useUserStore } from "@/stores/user";
 import { User, Lock } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
 
-const user = useUserStore();
+const userStore = useUserStore();
 const router = useRouter();
 
 interface LoginForm {
@@ -56,7 +56,8 @@ const handleLoginButtonClick = async (formEl: FormInstance | undefined) => {
     }
   });
 
-  await user.login(loginForm.userId, loginForm.password)
+  await userStore
+    .login(loginForm.userId, loginForm.password)
     .then(() => {
       router.push({ name: "Top" });
     })
@@ -68,7 +69,6 @@ const handleLoginButtonClick = async (formEl: FormInstance | undefined) => {
         type: "error",
       });
     });
-
 };
 
 const handleCancelButtonClick = (formEl: FormInstance | undefined) => {
@@ -81,7 +81,9 @@ const handleCancelButtonClick = (formEl: FormInstance | undefined) => {
     <template #header>
       <div class="card-header">
         <span>Login</span>
-        <el-button link type="primary" tabindex="-1" style="display:none;">Forget password</el-button>
+        <el-button link type="primary" tabindex="-1" style="display: none"
+          >Forget password</el-button
+        >
       </div>
     </template>
     <el-form ref="loginFormRef" :model="loginForm" :rules="rules">
@@ -89,7 +91,12 @@ const handleCancelButtonClick = (formEl: FormInstance | undefined) => {
         <el-input v-model="loginForm.userId" :prefix-icon="User" />
       </el-form-item>
       <el-form-item label="パスワード" prop="password">
-        <el-input type="password" v-model="loginForm.password" show-password :prefix-icon="Lock" />
+        <el-input
+          type="password"
+          v-model="loginForm.password"
+          show-password
+          :prefix-icon="Lock"
+        />
       </el-form-item>
     </el-form>
     <template #footer>

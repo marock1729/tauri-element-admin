@@ -14,9 +14,9 @@ const router = createRouter({
         {
           path: "/sample",
           name: "sample",
-          component: () => import("@/views/SampleView.vue")
-        }
-      ]
+          component: () => import("@/views/SampleView.vue"),
+        },
+      ],
     },
     {
       path: "/login",
@@ -27,8 +27,8 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from) => {
-  const user = useUserStore();
-  if (!user.isLogin && to.name !== "Login") {
+  const userStore = useUserStore();
+  if (!userStore.isLogin && to.name !== "Login") {
     return { name: "Login" };
   }
 });
